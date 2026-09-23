@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ini Halaman Web</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        :root {
+            --dark-purple: #290456;
+            --white: #fefafa;
+            --white: #dcdce7;
+            --white: #f0ecf9;
+            --white: #d2e7e6;
+            --text: #e8e0f5;
+            --purple: #8b5cf6;
+            --purple-card: #24143f;
+            --light-purple: #c4b5fd;
+        }
+
+        body {
+            margin: 0;
+            background-color: var(--dark-purple);
+            color: var(--text);
+            font-family: Arial, sans-serif;
+        }
+
+        .main-box {
+            max-width: 1100px;
+            margin: 50px auto;
+            background-color: var(--purple-card);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+            position: relative;
+            z-index: 1;
+        }
+
+        .main-title {
+            color: var(--light-purple);
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .line {
+            border-color: #452973;
+            margin: 20px 0 35px;
+        }
+
+        .section-title {
+            color: var(--light-purple);
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .nama {
+            color: var(--white);
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .data-text {
+            color: var(--text);
+            font-size: 18px;
+            margin-bottom: 8px;
+        }
+
+        .foto-profil {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid var(--purple);
+        }
+
+        .table {
+            margin-top: 20px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .table thead {
+            background-color: #6f42c1;
+            color: white;
+        }
+
+        .table tbody {
+            color: var(--text);
+        }
+
+        .table tbody tr {
+            background-color: #927abb;
+        }
+
+        .table tbody tr:hover {
+            background-color: #795ea8;
+        }
+
+        .grade {
+            color: white;
+            background-color: #765cae;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .ipk-box {
+            background-color: #7054a1;
+            padding: 25px;
+            border-radius: 15px;
+        }
+
+        .ipk-number {
+            color: var(--light-purple);
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+
+            .main-box {
+                margin: 20px;
+                padding: 25px;
+            }
+
+            .main-title {
+                font-size: 32px;
+            }
+
+            .nama {
+                font-size: 27px;
+            }
+
+            .foto-profil {
+                width: 200px;
+                height: 240px;
+                margin-top: 25px;
+            }
+
+        }
+
+        .progress {
+            height: 12px;
+            background-color: #3a2555;
+            border-radius: 20px;
+        }
+
+        .progress-bar {
+            background-color: var(--purple);
+            border-radius: 20px;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .star {
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: twinkle 3s infinite ease-in-out,
+                floatStar 8s infinite ease-in-out;
+        }
+
+        @keyframes twinkle {
+
+            0%,
+            100% {
+                opacity: 0.2;
+                transform: scale(1);
+            }
+
+            50% {
+                opacity: 1;
+                transform: scale(1.5);
+            }
+        }
+
+        @keyframes floatStar {
+
+            0%,
+            100% {
+                margin-top: 0;
+                margin-left: 0;
+            }
+
+            50% {
+                margin-top: -15px;
+                margin-left: 10px;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="stars">
+        <span class="star" style="top: 10%; left: 15%; animation-delay: 0s;"></span>
+        <span class="star" style="top: 20%; left: 35%; animation-delay: 1s;"></span>
+        <span class="star" style="top: 15%; left: 70%; animation-delay: 2s;"></span>
+        <span class="star" style="top: 30%; left: 85%; animation-delay: 0.5s;"></span>
+        <span class="star" style="top: 45%; left: 10%; animation-delay: 1.5s;"></span>
+        <span class="star" style="top: 50%; left: 50%; animation-delay: 2.5s;"></span>
+        <span class="star" style="top: 65%; left: 75%; animation-delay: 1s;"></span>
+        <span class="star" style="top: 75%; left: 25%; animation-delay: 0.3s;"></span>
+        <span class="star" style="top: 85%; left: 60%; animation-delay: 1.8s;"></span>
+        <span class="star" style="top: 90%; left: 90%; animation-delay: 2.2s;"></span>
+        <span class="star" style="top: 40%; left: 40%; animation-delay: 0.8s;"></span>
+        <span class="star" style="top: 70%; left: 5%; animation-delay: 1.2s;"></span>
+        <span class="star" style="top: 35%; left: 60%; animation-delay: 2.7s;"></span>
+        <span class="star" style="top: 80%; left: 80%; animation-delay: 1.4s;"></span>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #24143f;">
+
+        <div class="container">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">
+                            Profile
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nilai">
+                            Nilai
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ipk">
+                            IPK
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="main-box">
+
+            <section id="profile"></section>
+
+            <h1 class="main-title">
+                PROFIL MAHASIGMA
+            </h1>
+
+            <hr class="line">
+
+            </section>
+
+            <div class="row align-items-center reveal">
+
+                <div class="col-md-8">
+
+                    <p class="nama">
+                        Nama: Noval Agditya Firanda
+                    </p>
+
+                    <p class="data-text">
+                    <h2>NBI: 1482500020</h2>
+                    </p>
+
+                    <p class="data-text">
+                    <h2>Prodi: Sistem & Teknologi Informasi</h2>
+                    </p>
+
+                    <p class="data-text">
+                    <h2>Hobi: Hobi saya adalah nonton series daripada film. Alasan saya lebih suka series adalah karena
+                        banyak epsnya
+                        dan kemungkinan ada season selanjutnya, ketimbang film yang 1 saja atau kalau laku paling mentok
+                        juga dibuat
+                        trilogy. Jadi itulah alasan saya mengapa prefer nonton seires drpd film.
+                    </h2>
+                    </p>
+
+                </div>
+
+                <div class="col-md-4 text-center">
+
+                    <img src="foto1.jpg" alt="Foto Noval" class="foto-profil">
+
+                    <img src="foto2.jpeg" alt="Foto Noval" class="foto-profil">
+
+                </div>
+
+            </div>
+
+            <hr class="line">
+
+            <h2 id="nilai" class="section-title">Nilai Matkul Semester 2</h2>
+
+            <div class="table-responsive reveal">
+
+                <table class="table table-bordered table-hover text-center">
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Matkul</th>
+                            <th>SKS</th>
+                            <th>Nilai</th>
+                            <th>Grade</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Algritma & Struktur Data</td>
+                            <td>3</td>
+                            <td>85</td>
+                            <td>
+                                <span class="grade">AB</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Basis Data</td>
+                            <td>3</td>
+                            <td>82</td>
+                            <td>
+                                <span class="grade">AB</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Pemrograman Beriontasi Objek</td>
+                            <td>3</td>
+                            <td>80</td>
+                            <td>
+                                <span class="grade">B</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Teknologi Informasi & Apk Bisnis Berkembanng</td>
+                            <td>3</td>
+                            <td>88</td>
+                            <td>
+                                <span class="grade">A</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Stastistika & Probabilitas</td>
+                            <td>2</td>
+                            <td>86</td>
+                            <td>
+                                <span class="grade">A</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>Arsitektur & Organisasi Komputer</td>
+                            <td>2</td>
+                            <td>84</td>
+                            <td>
+                                <span class="grade">AB</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>Interaksi Manusia dan Komputer</td>
+                            <td>2</td>
+                            <td>80</td>
+                            <td>
+                                <span class="grade">B</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <hr class="line">
+
+            <h2 id="ipk" class="section-title">IPK</h2>
+
+            <div class="table-responsive reveal">
+
+                <table class="table table-bordered table-hover text-center">
+
+                    <thead>
+
+                        <tr>
+                            <th>Semester</th>
+                            <th>Total SKS</th>
+                            <th>IPS</th>
+                            <th>IPK</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>18</td>
+                            <td>3.40</td>
+                            <td>3.45</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>20</td>
+                            <td>3.50</td>
+                            <td>3.55</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>23</td>
+                            <td>ongoing</td>
+                            <td>ongoing</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="text-center mb-4 reveal">
+                <p class="mb-1">IPK Saat Ini</p>
+                <div class="ipk-number">3.47</div>
+                <p class="mb-2">dari 4.00</p>
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar" style="width: 86.75%;"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
+    </script>
+
+    <script src="script.js" defer></script>
+
+</body>
+
+</html>
