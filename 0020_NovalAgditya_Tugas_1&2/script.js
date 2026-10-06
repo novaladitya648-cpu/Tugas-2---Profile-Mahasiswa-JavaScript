@@ -2,90 +2,140 @@ const dataNilai = [
     {
         matkul: "Algoritma & Struktur Data",
         nilai: 85,
-        sks: 3,
-        grade: "AB"
+        grade: "AB",
+        sks: 3
     },
     {
         matkul: "Basis Data",
         nilai: 82,
-        sks: 3,
-        grade: "AB"
+        grade: "AB",
+        sks: 3
     },
     {
         matkul: "Pemrograman Berorientasi Objek",
         nilai: 80,
-        sks: 3,
-        grade: "B"
+        grade: "B",
+        sks: 3
     },
     {
         matkul: "Teknologi Informasi & Aplikasi Bisnis Berkembang",
         nilai: 88,
-        sks: 3,
-        grade: "A"
+        grade: "A",
+        sks: 3
     },
     {
         matkul: "Statistika & Probabilitas",
         nilai: 86,
-        sks: 2,
-        grade: "A"
+        grade: "A",
+        sks: 2
     },
     {
         matkul: "Arsitektur & Organisasi Komputer",
         nilai: 84,
-        sks: 2,
-        grade: "AB"
+        grade: "AB",
+        sks: 2
     },
     {
         matkul: "Interaksi Manusia dan Komputer",
         nilai: 80,
-        sks: 2,
-        grade: "B"
+        grade: "B",
+        sks: 2
     }
 ];
 
-function hitungRataRata(data) {
-    let total = 0;
+function tampilkanNilai(data) {
+    const tbody = document.querySelector("#tabelNilai tbody");
 
-    for (const m of data) {
-        total += m.nilai;
-    }
+    if (!tbody) return;
 
-    return total / data.length;
+    tbody.innerHTML = "";
+
+    data.forEach((item, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item.matkul}</td>
+            <td>${item.sks}</td>
+            <td>${item.nilai}</td>
+            <td>
+                <span class="grade">${item.grade}</span>
+            </td>
+        `;
+
+        tbody.appendChild(row);
+    });
 }
 
-function cariGrade(data, grade) {
-    return data.filter(m => m.grade === grade);
+const btnGrade = document.getElementById("btnGrade");
+
+if (btnGrade) {
+    btnGrade.addEventListener("click", function () {
+        const gradeDipilih = document.getElementById("filterGrade").value;
+        const pesanGrade = document.getElementById("pesanGrade");
+
+        if (gradeDipilih === "") {
+            pesanGrade.textContent = "Pilih nilai sek";
+            tampilkanNilai(dataNilai);
+            return;
+        }
+
+        const hasilGrade = dataNilai.filter(function (item) {
+            return item.grade === gradeDipilih;
+        });
+
+        tampilkanNilai(hasilGrade);
+
+        pesanGrade.textContent =
+            `Ada ${hasilGrade.length} matkul nilai e ${gradeDipilih}.`;
+    });
 }
 
-function tentukanHasil(rataRata) {
-    if (rataRata >= 85) {
-        return "Ruajin banget (A)";
-    } else if (rataRata >= 80) {
-        return "Mayan rajin (B)";
-    } else if (rataRata >= 70) {
-        return "Gak rajin (C)";
-    } else {
-        return "Ojok mbolos ae! (D)";
-    }
+const btnFilter = document.getElementById("btnFilter");
+const btnReset = document.getElementById("btnReset");
+
+if (btnFilter) {
+    btnFilter.addEventListener("click", function () {
+        const nilaiMin = Number(document.getElementById("nilaiMin").value);
+        const nilaiMax = Number(document.getElementById("nilaiMax").value);
+        const pesanFilter = document.getElementById("pesanFilter");
+
+        if (
+            document.getElementById("nilaiMin").value === "" ||
+            document.getElementById("nilaiMax").value === ""
+        ) {
+            pesanFilter.textContent = "Monggo masukno nilai minimum dan maksimum nya dlu.";
+            return;
+        }
+
+        if (nilaiMin > nilaiMax) {
+            pesanFilter.textContent = "Nilai minimum gabole lebih besar dari nilai maksimum.";
+            return;
+        }
+
+        const hasilFilter = dataNilai.filter(function (item) {
+            return item.nilai >= nilaiMin && item.nilai <= nilaiMax;
+        });
+
+        tampilkanNilai(hasilFilter);
+
+        if (hasilFilter.length === 0) {
+            pesanFilter.textContent = "Gaada nilai matkul di rentang nilai ini.";
+        } else {
+            pesanFilter.textContent =
+                `Ada ${hasilFilter.length} matkul di rentang nilai ${nilaiMin} - ${nilaiMax}.`;
+        }
+    });
 }
 
-function hitungTotalSKS(data) {
-    let totalSKS = 0;
+if (btnReset) {
+    btnReset.addEventListener("click", function () {
+        document.getElementById("nilaiMin").value = "";
+        document.getElementById("nilaiMax").value = "";
+        document.getElementById("pesanFilter").textContent = "";
 
-    for (const m of data) {
-        totalSKS += m.sks;
-    }
-
-    return totalSKS;
+        tampilkanNilai(dataNilai);
+    });
 }
 
-const rataRata = hitungRataRata(dataNilai);
-const gradeA = cariGrade(dataNilai, "A");
-const Hasil = tentukanHasil(rataRata);
-const totalSKS = hitungTotalSKS(dataNilai);
-
-console.log("Rekapan Nilai Saya DiSemester 2");
-console.log("Nilai rata rata:", rataRata.toFixed(2));
-console.log("Matkul yang dapat nilai A:", gradeA);
-console.log("Hasil nilai:", Hasil);
-console.log("Total SKS:", totalSKS);
+tampilkanNilai(dataNilai);
