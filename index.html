@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Ini Halaman Web</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <div class="stars">
+        <span class="star star-1"></span>
+        <span class="star star-2"></span>
+        <span class="star star-3"></span>
+        <span class="star star-4"></span>
+        <span class="star star-5"></span>
+        <span class="star star-6"></span>
+        <span class="star star-7"></span>
+        <span class="star star-8"></span>
+        <span class="star star-9"></span>
+        <span class="star star-10"></span>
+        <span class="star star-11"></span>
+        <span class="star star-12"></span>
+        <span class="star star-13"></span>
+        <span class="star star-14"></span>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+        <div class="container">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarMenu">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#profile">
+                            Profile
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#nilai">
+                            Nilai
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="#ipk">
+                            IPK
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container">
+
+        <div class="main-box">
+
+            <section id="profile"></section>
+
+            <h1 class="main-title">
+                PROFIL MAHASIGMA
+            </h1>
+
+            <hr class="line">
+
+            </section>
+
+            <div class="row align-items-center reveal">
+
+                <div class="col-md-8">
+
+                    <p class="nama">
+                        Nama: Noval Agditya Firanda
+                    </p>
+
+                    <p class="data-text">
+                    <h2>NBI: 1482500020</h2>
+                    </p>
+
+                    <p class="data-text">
+                    <h2>Prodi: Sistem & Teknologi Informasi</h2>
+                    </p>
+
+                    <p class="data-text">
+                    <h2>Hobi: Hobi saya adalah nonton series daripada film. Alasan saya lebih suka series adalah karena
+                        banyak epsnya
+                        dan kemungkinan ada season selanjutnya, ketimbang film yang 1 saja atau kalau laku paling mentok
+                        juga dibuat
+                        trilogy. Jadi itulah alasan saya mengapa prefer nonton seires drpd film.
+                    </h2>
+                    </p>
+
+                </div>
+
+                <div class="col-md-4 text-center">
+
+                    <img src="foto1.jpg" alt="Foto Noval" class="foto-profil">
+
+                    <img src="foto2.jpeg" alt="Foto Noval" class="foto-profil">
+
+                </div>
+
+            </div>
+
+            <hr class="line">
+
+            <h2 id="nilai" class="section-title">Nilai Matkul Semester 2</h2>
+
+            <div class="mb-3">
+                <label class="form-label">Filter Rentang Nilai</label>
+
+                <div class="row g-2">
+                    <div class="col-md-4">
+                        <input type="number" id="nilaiMin" class="form-control" placeholder="Nilai minimal">
+                    </div>
+
+                    <div class="col-md-4">
+                        <input type="number" id="nilaiMax" class="form-control" placeholder="Nilai maksimal">
+                    </div>
+
+                    <div class="col-md-4">
+                        <button id="btnFilter" class="btn btn-primary w-100">
+                            Filter Nilai e
+                        </button>
+                    </div>
+                </div>
+
+                <button id="btnSemua" class="btn btn-secondary mt-2">
+                    Nampilin semua
+                </button>
+
+                <p id="pesanFilter" class="mt-2"></p>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Filter Berdasarkan Grade</label>
+
+                <div class="row g-2">
+                    <div class="col-md-8">
+                        <select id="filterGrade" class="form-select">
+                            <option value="">Milih o dulu</option>
+                            <option value="A">A</option>
+                            <option value="AB">AB</option>
+                            <option value="B">B</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <button id="btnGrade" class="btn btn-primary w-100">
+                            Tampilno
+                        </button>
+                    </div>
+                </div>
+
+                <p id="pesanGrade" class="mt-2"></p>
+            </div>
+
+            <div class="table-responsive reveal">
+
+                <table id="tabelNilai" class="table table-bordered table-hover">
+
+                    <thead>
+
+                        <tr>
+                            <th>No</th>
+                            <th>Matkul</th>
+                            <th>SKS</th>
+                            <th>Nilai</th>
+                            <th>Grade</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>Algritma & Struktur Data</td>
+                            <td>3</td>
+                            <td>85</td>
+                            <td>
+                                <span class="grade">AB</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>Basis Data</td>
+                            <td>3</td>
+                            <td>82</td>
+                            <td>
+                                <span class="grade">AB</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>Pemrograman Beriontasi Objek</td>
+                            <td>3</td>
+                            <td>80</td>
+                            <td>
+                                <span class="grade">B</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>4</td>
+                            <td>Teknologi Informasi & Apk Bisnis Berkembanng</td>
+                            <td>3</td>
+                            <td>88</td>
+                            <td>
+                                <span class="grade">A</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>5</td>
+                            <td>Stastistika & Probabilitas</td>
+                            <td>2</td>
+                            <td>86</td>
+                            <td>
+                                <span class="grade">A</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>6</td>
+                            <td>Arsitektur & Organisasi Komputer</td>
+                            <td>2</td>
+                            <td>84</td>
+                            <td>
+                                <span class="grade">AB</span>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>7</td>
+                            <td>Interaksi Manusia dan Komputer</td>
+                            <td>2</td>
+                            <td>80</td>
+                            <td>
+                                <span class="grade">B</span>
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <hr class="line">
+
+            <h2 id="ipk" class="section-title">IPK</h2>
+
+            <div class="table-responsive reveal">
+
+                <table class="table table-bordered table-hover text-center">
+
+                    <thead>
+
+                        <tr>
+                            <th>Semester</th>
+                            <th>Total SKS</th>
+                            <th>IPS</th>
+                            <th>IPK</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        <tr>
+                            <td>1</td>
+                            <td>18</td>
+                            <td>3.40</td>
+                            <td>3.45</td>
+                        </tr>
+
+                        <tr>
+                            <td>2</td>
+                            <td>20</td>
+                            <td>3.50</td>
+                            <td>3.55</td>
+                        </tr>
+
+                        <tr>
+                            <td>3</td>
+                            <td>23</td>
+                            <td>ongoing</td>
+                            <td>ongoing</td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <div class="text-center mb-4 reveal">
+                <p class="mb-1">IPK Saat Ini</p>
+                <div class="ipk-number">3.47</div>
+                <p class="mb-2">dari 4.00</p>
+
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"></div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        const reveals = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show');
+                }
+            });
+        }, {
+            threshold: 0.15
+        });
+
+        reveals.forEach(reveal => {
+            observer.observe(reveal);
+        });
+    </script>
+
+    <script src="script.js" defer></script>
+
+</body>
+
+</html>
