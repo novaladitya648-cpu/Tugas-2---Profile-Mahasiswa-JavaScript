@@ -1,56 +1,23 @@
+// Data nilai (array of object)
 const dataNilai = [
-    {
-        matkul: "Algoritma & Struktur Data",
-        nilai: 85,
-        grade: "AB",
-        sks: 3
-    },
-    {
-        matkul: "Basis Data",
-        nilai: 82,
-        grade: "AB",
-        sks: 3
-    },
-    {
-        matkul: "Pemrograman Berorientasi Objek",
-        nilai: 80,
-        grade: "B",
-        sks: 3
-    },
-    {
-        matkul: "Teknologi Informasi & Aplikasi Bisnis Berkembang",
-        nilai: 88,
-        grade: "A",
-        sks: 3
-    },
-    {
-        matkul: "Statistika & Probabilitas",
-        nilai: 86,
-        grade: "A",
-        sks: 2
-    },
-    {
-        matkul: "Arsitektur & Organisasi Komputer",
-        nilai: 84,
-        grade: "AB",
-        sks: 2
-    },
-    {
-        matkul: "Interaksi Manusia dan Komputer",
-        nilai: 80,
-        grade: "B",
-        sks: 2
-    }
+    { matkul: "Algoritma & Struktur Data", nilai: 85, grade: "AB", sks: 3 },
+    { matkul: "Basis Data", nilai: 82, grade: "AB", sks: 3 },
+    { matkul: "Pemrograman Berorientasi Objek", nilai: 80, grade: "B", sks: 3 },
+    { matkul: "Teknologi Informasi & Aplikasi Bisnis Berkembang", nilai: 88, grade: "A", sks: 3 },
+    { matkul: "Statistika & Probabilitas", nilai: 86, grade: "A", sks: 2 },
+    { matkul: "Arsitektur & Organisasi Komputer", nilai: 84, grade: "AB", sks: 2 },
+    { matkul: "Interaksi Manusia dan Komputer", nilai: 80, grade: "B", sks: 2 }
 ];
 
+// Menampilkan data ke tabel nilai
 function tampilkanNilai(data) {
     const tbody = document.querySelector("#tabelNilai tbody");
-
     if (!tbody) return;
 
+    // Kosongkan tabel dulu
     tbody.innerHTML = "";
 
-    data.forEach((item, index) => {
+    data.forEach(function (item, index) {
         const row = document.createElement("tr");
 
         row.innerHTML = `
@@ -58,84 +25,96 @@ function tampilkanNilai(data) {
             <td>${item.matkul}</td>
             <td>${item.sks}</td>
             <td>${item.nilai}</td>
-            <td>
-                <span class="grade">${item.grade}</span>
-            </td>
+            <td><span class="grade">${item.grade}</span></td>
         `;
 
         tbody.appendChild(row);
     });
 }
 
-const btnGrade = document.getElementById("btnGrade");
-
-if (btnGrade) {
-    btnGrade.addEventListener("click", function () {
-        const gradeDipilih = document.getElementById("filterGrade").value;
-        const pesanGrade = document.getElementById("pesanGrade");
-
-        if (gradeDipilih === "") {
-            pesanGrade.textContent = "Pilih nilai sek";
-            tampilkanNilai(dataNilai);
-            return;
-        }
-
-        const hasilGrade = dataNilai.filter(function (item) {
-            return item.grade === gradeDipilih;
-        });
-
-        tampilkanNilai(hasilGrade);
-
-        pesanGrade.textContent =
-            `Ada ${hasilGrade.length} matkul nilai e ${gradeDipilih}.`;
-    });
+// Menampilkan pesan dengan efek fadeIn (jQuery)
+function tampilkanPesan(selector, teks) {
+    $(selector).hide().text(teks).fadeIn(300);
 }
 
-const btnFilter = document.getElementById("btnFilter");
-const btnReset = document.getElementById("btnReset");
+// Filter berdasarkan rentang nilai
+$("#btnFilter").on("click", function () {
+    const minVal = $("#nilaiMin").val();
+    const maxVal = $("#nilaiMax").val();
 
-if (btnFilter) {
-    btnFilter.addEventListener("click", function () {
-        const nilaiMin = Number(document.getElementById("nilaiMin").value);
-        const nilaiMax = Number(document.getElementById("nilaiMax").value);
-        const pesanFilter = document.getElementById("pesanFilter");
+    // Validasi input kosong
+    if (minVal === "" || maxVal === "") {
+        tampilkanPesan("#pesanFilter", "Masukkan nilai minimum dan maksimum terlebih dahulu.");
+        return;
+    }
 
-        if (
-            document.getElementById("nilaiMin").value === "" ||
-            document.getElementById("nilaiMax").value === ""
-        ) {
-            pesanFilter.textContent = "Monggo masukno nilai minimum dan maksimum nya dlu.";
-            return;
-        }
+    const nilaiMin = Number(minVal);
+    const nilaiMax = Number(maxVal);
 
-        if (nilaiMin > nilaiMax) {
-            pesanFilter.textContent = "Nilai minimum gabole lebih besar dari nilai maksimum.";
-            return;
-        }
+    // Validasi minimum tidak boleh lebih besar dari maksimum
+    if (nilaiMin > nilaiMax) {
+        tampilkanPesan("#pesanFilter", "Nilai minimum tidak boleh lebih besar dari nilai maksimum.");
+        return;
+    }
 
-        const hasilFilter = dataNilai.filter(function (item) {
-            return item.nilai >= nilaiMin && item.nilai <= nilaiMax;
-        });
-
-        tampilkanNilai(hasilFilter);
-
-        if (hasilFilter.length === 0) {
-            pesanFilter.textContent = "Gaada nilai matkul di rentang nilai ini.";
-        } else {
-            pesanFilter.textContent =
-                `Ada ${hasilFilter.length} matkul di rentang nilai ${nilaiMin} - ${nilaiMax}.`;
-        }
+    // Ambil data yang nilainya sesuai rentang
+    const hasilFilter = dataNilai.filter(function (item) {
+        return item.nilai >= nilaiMin && item.nilai <= nilaiMax;
     });
-}
 
-if (btnReset) {
-    btnReset.addEventListener("click", function () {
-        document.getElementById("nilaiMin").value = "";
-        document.getElementById("nilaiMax").value = "";
-        document.getElementById("pesanFilter").textContent = "";
+    tampilkanNilai(hasilFilter);
 
+    if (hasilFilter.length === 0) {
+        tampilkanPesan("#pesanFilter", "Tidak ada matkul pada rentang nilai ini.");
+    } else {
+        tampilkanPesan("#pesanFilter",
+            `Ada ${hasilFilter.length} matkul pada rentang nilai ${nilaiMin} - ${nilaiMax}.`);
+    }
+});
+
+// Filter berdasarkan grade
+$("#btnGrade").on("click", function () {
+    const gradeDipilih = $("#filterGrade").val();
+
+    // Jika grade belum dipilih, tampilkan semua data
+    if (gradeDipilih === "") {
+        tampilkanPesan("#pesanGrade", "Pilih grade terlebih dahulu.");
         tampilkanNilai(dataNilai);
-    });
-}
+        return;
+    }
 
+    // Ambil data yang gradenya sesuai pilihan
+    const hasilGrade = dataNilai.filter(function (item) {
+        return item.grade === gradeDipilih;
+    });
+
+    tampilkanNilai(hasilGrade);
+    tampilkanPesan("#pesanGrade", `Ada ${hasilGrade.length} matkul dengan grade ${gradeDipilih}.`);
+});
+
+// Tombol tampilkan semua (reset filter)
+$("#btnSemua").on("click", function () {
+    $("#nilaiMin, #nilaiMax").val("");
+    $("#filterGrade").val("");
+    $("#pesanFilter, #pesanGrade").text("");
+
+    tampilkanNilai(dataNilai);
+});
+
+// Animasi muncul saat di-scroll
+const reveals = document.querySelectorAll(".reveal");
+
+const observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("show");
+        }
+    });
+}, { threshold: 0.15 });
+
+reveals.forEach(function (reveal) {
+    observer.observe(reveal);
+});
+
+// Tampilkan semua data saat halaman pertama dibuka
 tampilkanNilai(dataNilai);

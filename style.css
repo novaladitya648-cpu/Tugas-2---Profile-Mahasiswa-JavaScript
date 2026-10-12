@@ -1,8 +1,6 @@
+/* Warna utama */
 :root {
     --dark-purple: #23085a;
-    --white: #fefafa;
-    --white: #dcdce7;
-    --white: #f0ecf9;
     --white: #d2e7e6;
     --text: #e8e0f5;
     --purple: #8b5cf6;
@@ -10,6 +8,7 @@
     --light-purple: #c4b5fd;
 }
 
+/* Pengaturan dasar halaman */
 body {
     margin: 0;
     background-color: var(--dark-purple);
@@ -17,6 +16,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* Kotak utama konten */
 .main-box {
     max-width: 1100px;
     margin: 50px auto;
@@ -28,6 +28,7 @@ body {
     z-index: 1;
 }
 
+/* Judul utama */
 .main-title {
     color: var(--light-purple);
     font-size: 42px;
@@ -35,11 +36,13 @@ body {
     margin-bottom: 20px;
 }
 
+/* Garis pemisah antar bagian */
 .line {
     border-color: #452973;
     margin: 20px 0 35px;
 }
 
+/* Judul tiap bagian */
 .section-title {
     color: var(--light-purple);
     font-size: 26px;
@@ -47,6 +50,7 @@ body {
     margin-bottom: 15px;
 }
 
+/* Teks nama */
 .nama {
     color: var(--white);
     font-size: 32px;
@@ -54,43 +58,38 @@ body {
     margin-bottom: 10px;
 }
 
+/* Teks data profil (NBI, prodi, hobi) */
 .data-text {
     color: var(--text);
     font-size: 18px;
     margin-bottom: 8px;
 }
 
+/* Foto profil */
 .foto-profil {
-    width: 250px;
-    height: 250px;
+    width: 150px;
+    height: 150px;
     object-fit: cover;
     border-radius: 15px;
     border: 3px solid var(--purple);
 }
 
+/* Warna tabel (menimpa variabel bawaan Bootstrap) */
 .table {
-    margin-top: 20px;
-    border-radius: 20px;
-    overflow: hidden;
+    --bs-table-bg: #3a2555;
+    --bs-table-color: var(--text);
+    --bs-table-hover-bg: #4d3278;
+    --bs-table-hover-color: #ffffff;
+    --bs-table-border-color: #5b3f8f;
 }
 
-.table thead {
+/* Header tabel */
+.table thead th {
     background-color: #6f42c1;
     color: white;
 }
 
-.table tbody {
-    color: var(--text);
-}
-
-.table tbody tr {
-    background-color: #927abb;
-}
-
-.table tbody tr:hover {
-    background-color: #795ea8;
-}
-
+/* Label grade */
 .grade {
     color: white;
     background-color: #765cae;
@@ -99,18 +98,14 @@ body {
     font-weight: bold;
 }
 
-.ipk-box {
-    background-color: #7054a1;
-    padding: 25px;
-    border-radius: 15px;
-}
-
+/* Angka IPK */
 .ipk-number {
     color: var(--light-purple);
     font-size: 35px;
     font-weight: bold;
 }
 
+/* Tampilan untuk layar kecil (HP/tablet) */
 @media (max-width: 768px) {
 
     .main-box {
@@ -134,6 +129,7 @@ body {
 
 }
 
+/* Progress bar IPK (lebarnya diatur di HTML) */
 .progress {
     height: 12px;
     background-color: #3a2555;
@@ -143,9 +139,9 @@ body {
 .progress-bar {
     background-color: var(--purple);
     border-radius: 20px;
-    width: 86.75%;
 }
 
+/* Animasi muncul saat di-scroll */
 .reveal {
     opacity: 0;
     transform: translateY(50px);
@@ -157,6 +153,7 @@ body {
     transform: translateY(0);
 }
 
+/* Wadah bintang latar belakang */
 .stars {
     position: fixed;
     top: 0;
@@ -168,6 +165,7 @@ body {
     overflow: hidden;
 }
 
+/* Bentuk dasar bintang */
 .star {
     position: absolute;
     width: 3px;
@@ -179,6 +177,7 @@ body {
         floatStar 8s infinite ease-in-out;
 }
 
+/* Animasi bintang berkedip */
 @keyframes twinkle {
 
     0%,
@@ -193,6 +192,7 @@ body {
     }
 }
 
+/* Animasi bintang melayang */
 @keyframes floatStar {
 
     0%,
@@ -207,10 +207,12 @@ body {
     }
 }
 
+/* Warna navbar */
 .navbar {
     background-color: #24143f;
 }
 
+/* Posisi dan jeda animasi tiap bintang */
 .star-1 {
     top: 10%;
     left: 15%;
