@@ -50,19 +50,13 @@ body {
     margin-bottom: 15px;
 }
 
-/* Teks nama */
-.nama {
-    color: var(--white);
-    font-size: 32px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-
-/* Teks data profil (NBI, prodi, hobi) */
+/* Teks profil (nama, NBI, prodi, hobi) dibuat sama semua */
+.nama,
 .data-text {
     color: var(--text);
-    font-size: 18px;
-    margin-bottom: 8px;
+    font-size: 22px;
+    font-weight: normal;
+    margin-bottom: 10px;
 }
 
 /* Foto profil */
@@ -115,10 +109,6 @@ body {
 
     .main-title {
         font-size: 32px;
-    }
-
-    .nama {
-        font-size: 27px;
     }
 
     .foto-profil {
