@@ -9,8 +9,8 @@ const dataNilai = [
     { matkul: "Interaksi Manusia dan Komputer", nilai: 80, grade: "B", sks: 2 }
 ];
 
-// Menampilkan data ke tabel nilai
-function tampilkanNilai(data) {
+// Menampilkan data ke tabel nilai (pakaiEfek = false untuk tanpa animasi)
+function tampilkanNilai(data, pakaiEfek = true) {
     const tbody = document.querySelector("#tabelNilai tbody");
     if (!tbody) return;
 
@@ -29,12 +29,19 @@ function tampilkanNilai(data) {
         `;
 
         tbody.appendChild(row);
+
+        // Efek fadeIn pada tiap baris (jQuery)
+        if (pakaiEfek) {
+            $(row).hide().fadeIn(400);
+        }
     });
 }
 
-// Menampilkan pesan dengan efek fadeIn (jQuery)
+// Menampilkan pesan dengan efek fadeOut lalu fadeIn (jQuery)
 function tampilkanPesan(selector, teks) {
-    $(selector).hide().text(teks).fadeIn(300);
+    $(selector).stop(true, true).fadeOut(150, function () {
+        $(this).text(teks).fadeIn(300);
+    });
 }
 
 // Filter berdasarkan rentang nilai
@@ -92,11 +99,27 @@ $("#btnGrade").on("click", function () {
     tampilkanPesan("#pesanGrade", `Ada ${hasilGrade.length} matkul dengan grade ${gradeDipilih}.`);
 });
 
+// Pencarian matkul real-time saat mengetik (tanpa animasi supaya tidak berkedip)
+$("#cariMatkul").on("keyup", function () {
+    const kata = $(this).val().toLowerCase();
+
+    // Ambil data yang nama matkulnya mengandung kata yang diketik
+    const hasilCari = dataNilai.filter(function (item) {
+        return item.matkul.toLowerCase().includes(kata);
+    });
+
+    tampilkanNilai(hasilCari, false);
+});
+
 // Tombol tampilkan semua (reset filter)
 $("#btnSemua").on("click", function () {
-    $("#nilaiMin, #nilaiMax").val("");
+    $("#nilaiMin, #nilaiMax, #cariMatkul").val("");
     $("#filterGrade").val("");
-    $("#pesanFilter, #pesanGrade").text("");
+
+    // Pesan menghilang dengan efek fadeOut
+    $("#pesanFilter, #pesanGrade").fadeOut(200, function () {
+        $(this).text("");
+    });
 
     tampilkanNilai(dataNilai);
 });
